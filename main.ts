@@ -2,14 +2,15 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     mySprite.y += -16
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
-    mySprite.x += 16
+    mySprite.x += -16
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
-    mySprite.x += -16
+    mySprite.x += 16
 })
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     mySprite.y += 16
 })
+let projectile: Sprite = null
 let mySprite: Sprite = null
 mySprite = sprites.create(img`
     . . . . . . . . . . . c c c c c 
@@ -30,4 +31,24 @@ mySprite = sprites.create(img`
     . c c c c c c c c c c c c . . . 
     `, SpriteKind.Player)
 tiles.setCurrentTilemap(tilemap`level2`)
-tiles.placeOnTile(mySprite, tiles.getTileLocation(0, 0))
+tiles.placeOnTile(mySprite, tiles.getTileLocation(5, 7))
+game.onUpdateInterval(500, function () {
+    projectile = sprites.createProjectileFromSide(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, 50, 0)
+})
