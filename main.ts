@@ -1,6 +1,9 @@
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     mySprite.y += -16
 })
+scene.onOverlapTile(SpriteKind.Player, sprites.builtin.forestTiles0, function (sprite, location) {
+    game.gameOver(true)
+})
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     mySprite.x += -16
 })
